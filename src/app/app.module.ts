@@ -12,8 +12,15 @@ import { TodoUpdateComponent } from './components/user/todo-update/todo-update.c
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
-
-
+import { UserService } from './services/user.service';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxCaptchaModule } from 'ngx-captcha';
+import {
+  ToastrModule,
+  ToastNoAnimation,
+  ToastNoAnimationModule
+} from 'ngx-toastr';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,10 +37,14 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
-    
+    FormsModule,
+    HttpClientModule,
+    ToastNoAnimationModule.forRoot(),
+    NgxCaptchaModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

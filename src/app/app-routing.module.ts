@@ -31,7 +31,7 @@ const routes: Routes = [
       component:TodoAddComponent
     },
     {
-      path:'user/todo-update',
+      path:'user/todo-update/:id',
       component:TodoUpdateComponent
     }
 
