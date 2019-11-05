@@ -23,11 +23,11 @@
                 <tr *ngFor="let todo of todoList;let i =index">
                     <td>{{i}}</td>
                     <td>{{todo.description}}</td>
-                    <td>{{todo.addedDate | date : shortDate}}</td>
+                    <td>{{todo.dateAjout | date : shortDate}}</td>
                     <td>
                         <button class="btn btn-success" (click)="addTodo2(i,todo)"><i class="fa fa-check"></i></button>
-                        <button class="btn btn-warning mx-3" [routerLink]="['/user/todo-update']"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-danger" (click)="deleteTodo(i)"><i class="fa fa-trash"></i></button>
+                        <button class="btn btn-warning mx-3" [routerLink]="['/user/todo-update',todo._id]"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-danger" (click)="deleteTodo(i,todo._id)"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
 
@@ -67,14 +67,14 @@
 
               
 
-                <tr *ngFor="let t of todoList2; let i2=index">
+                <tr *ngFor="let done of todoList2; let i2=index">
                     <td>{{ i2 }}</td>
-                    <td>{{ t.description }}</td>
-                    <td>{{t.addedDate | date : shortDate}}</td>
-                    <td>{{t.enddDate | date : shortDate}}</td>
+                    <td>{{ done.description }}</td>
+                    <td>{{done.dateAjout | date : shortDate}}</td>
+                    <td>{{done.dateFin | date : shortDate}}</td>
                     <td>
 
-                        <button class="btn btn-danger" (click)="deleteTodo2(i)"><i class="fa fa-trash"></i></button>
+                        <button class="btn btn-danger" (click)="deleteTodo2(i,done._id)"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
 

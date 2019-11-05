@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { TodoService } from 'src/app/services/todo.service';
 import { ToastrService } from 'ngx-toastr';
+import { JwtHelperService } from "@auth0/angular-jwt";
+
 
 @Component({
   selector: 'app-todo-list',
@@ -45,6 +47,21 @@ export class TodoListComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    const helper = new JwtHelperService();
+    let token = localStorage.getItem("token");
+    const decodeToken = helper.decodeToken(token);
+    let idUser=decodeToken.idUser;
+    this.todoService.listTodo(idUser).subscribe(
+      (result)=>{
+        console.log(result);
+          this.todoList=result.todoList;
+        this.todoList2=result.doneList;
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
+
 /*
     this.todoService.listTodo().subscribe(
     (result)=>{
@@ -57,7 +74,7 @@ export class TodoListComponent implements OnInit {
     */
   }
 
-  deleteTodo(index: number,id:any) {
+  deleteTodo(index: number,id:string) {
     this.todoService.deleteTodo(id).subscribe(
       (result)=>{
         console.log(result);
@@ -72,13 +89,32 @@ export class TodoListComponent implements OnInit {
   }
 
 
-  deleteTodo2(index: number) {
-    this.todoList2.splice(index, 1);
+  deleteTodo2(index: number,id:string) {
+    
+
+    this.todoService.deleteTodo(id).subscribe(
+      (result)=>{
+        console.log(result);
+        this.toastr.success("Todo deleted !");
+        this.todoList2.splice(index, 1);
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
   }
 
   addTodo2(index: number, todo) {
-    this.todoList.splice(index, 1);
-    todo.enddDate = new Date();
+    
+    this.todoService.updatedone(todo._id).subscribe(
+    (result)=>{
+      console.log(result);
+      this.todoList.splice(index, 1);
+    },
+    (error)=>{
+      console.log(error)
+    }
+    )
 
     this.todoList2.push(todo);
 

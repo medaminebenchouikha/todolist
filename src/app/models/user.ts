@@ -6,7 +6,8 @@ export class User {
         private _lastname?:String,
         private _phone?:String,
         private _email?:String,
-        private _password?:String
+        private _password?:String,
+        private _photo?:String
     ){}
 
     get id(){ return this._id;}
@@ -29,4 +30,6 @@ export class User {
     get password(){ return this._password;}
     set password(value){this._password=value;}
 
+    get photo(){ return this._photo;}
+    set photo(value){this._photo=value;}
 }

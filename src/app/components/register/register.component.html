@@ -36,6 +36,8 @@
                     <small class="text-danger" *ngIf="phone.errors.required">phone obligatoire</small>
                     <small class="text-danger" *ngIf="phone.errors.pattern">phone invalid</small>
                 </div>
+
+                <small *ngIf="errorPhone" class="text-danger">Phone Exist !</small>
             </div>
 
             <div class="col">

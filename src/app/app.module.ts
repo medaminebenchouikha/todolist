@@ -20,6 +20,10 @@ import {
   ToastNoAnimation,
   ToastNoAnimationModule
 } from 'ngx-toastr';
+import { TodoService } from './services/todo.service';
+import { UserListComponent } from './admin/user-list/user-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FileSelectDirective } from 'ng2-file-upload';
  
 @NgModule({
   declarations: [
@@ -31,7 +35,9 @@ import {
     TodoAddComponent,
     TodoUpdateComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserListComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
@@ -39,11 +45,13 @@ import {
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     ToastNoAnimationModule.forRoot(),
     NgxCaptchaModule
-  ],
+    ],
   providers: [
-    UserService
+    UserService,
+    TodoService
   ],
   bootstrap: [AppComponent]
 })

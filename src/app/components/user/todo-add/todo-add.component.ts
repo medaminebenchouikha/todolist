@@ -4,6 +4,8 @@ import { Todo } from 'src/app/models/todo';
 import { TodoService } from 'src/app/services/todo.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { JwtHelperService } from "@auth0/angular-jwt";
+
 
 @Component({
   selector: 'app-todo-add',
@@ -40,16 +42,19 @@ export class TodoAddComponent implements OnInit {
 
 
   addTodo(){
-
     let data = this.formaddtodo.value;
-    let todo= new Todo(null,data.description);
+    const helper = new JwtHelperService();
+    let token = localStorage.getItem("token");
+    const decodedToken = helper.decodeToken(token);
+    let idUser=decodedToken.idUser;
+    let todo= new Todo(null,data.description,idUser);
     this.todoService.addTodo(todo).subscribe((result)=>{
       console.log(result);
-      this.toastr.success('Todo added!');
+      this.toastr.success(result.message);
       this.router.navigate(['/user/todo-list']);
     },(error)=>{
       console.log(error);
-      this.toastr.error('Error!')
+      this.toastr.show('Error!');
     })
 
     console.log(this.formaddtodo.value);

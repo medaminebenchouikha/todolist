@@ -1,7 +1,8 @@
 export class Todo {
     constructor(
         private _id?:String,
-        private _description?:String
+        private _description?:String,
+        private _idUser?:String
     ){}
 
     get id(){return this._id}

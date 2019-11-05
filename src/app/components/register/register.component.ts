@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   errorEmail= false;
+  errorPhone= false;
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
@@ -23,7 +24,6 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit() {
-
     this.registerForm = this.formBuilder.group({
       firstName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z ]*$/)]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern(/^[a-zA-Z ]*$/)]),
@@ -54,8 +54,13 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['/']);
     },(error)=>{
       console.log(error.error.message);
+
+      if(error.error.message=='email')
       this.errorEmail=true;
-      this.toastr.error('Email exist!');
+      if(error.error.message=='phone')
+      this.errorPhone=true;
+
+      this.toastr.error(error.error.message+" exist !");
     })
   }
 

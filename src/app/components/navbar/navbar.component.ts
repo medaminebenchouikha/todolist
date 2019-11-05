@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-navbar',
@@ -8,15 +9,25 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   isLogin:boolean;
+  isAdmin:boolean = false;
   constructor(private router:Router) { }
 
-  ngOnInit() {
-    this.isLogin=localStorage.getItem('token')?true:false;   
+  ngOnInit() {     
+    let token=localStorage.getItem('token');      
+    if(token)
+    {
+    const helper=new JwtHelperService();
+    const decodToken=helper.decodeToken(token);
+    this.isAdmin=(decodToken.roleUser=='admin')?true:false; 
+    }  
+    this.isLogin=(token)?true:false; 
   }
 
   logout(){
     localStorage.removeItem('token');
     this.router.navigate(['/']);
+    this.isLogin=false;
+    this.isAdmin=false;
   }
 
 }
