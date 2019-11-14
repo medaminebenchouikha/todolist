@@ -90,7 +90,6 @@ export class TodoListComponent implements OnInit {
 
 
   deleteTodo2(index: number,id:string) {
-    
 
     this.todoService.deleteTodo(id).subscribe(
       (result)=>{

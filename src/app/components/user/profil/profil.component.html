@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <div class="col-3 mt-3">
+            <div class="card p-2" style="width: 18rem;">
+                <img [src]="url" class="card-img-top" alt="..." style="width: 150px;height: 150px;margin:auto">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{nameUser}}</h5>
+                    <button class="btn btn-info mr-3" (click)="file.click()"><i class="fa fa-camera"></i>upload</button>
+                    <button class="btn btn-danger mr-3" (click)="resetFile()"><i class="fa fa-close"></i>Annuler</button>
+                    <input type="file" style="visibility:hidden ;height: 0px;width: 0px;" accept="image/jpeg, image/png"
+                        #file (change)="selectFile($event)">
+                </div>
+            </div>
+        </div>
+        <div class="col-7 mt-3 ml-3">
+            <form [formGroup]="profilForm" (ngSubmit)="update()">
+                <div class="row">
+                    <div class="col">
+                        <label for="">firstName</label>
+                        <input type="text" class="form-control" formControlName="firstname" name="firstname">
+                    </div>
+                    <div class="col">
+                        <label for="">lastName</label>
+                        <input type="text" class="form-control" formControlName="lastname" name="lastname">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="">phone</label>
+                        <input type="text" class="form-control" formControlName="phone" name="phone">
+                    </div>
+                    <div class="col">
+                        <label for="">email</label>
+                        <input type="text" class="form-control" formControlName="email" name="email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-warning mt-3 btn-block" [disabled]="profilForm.invalid" type="submit">update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+<app-footer></app-footer>

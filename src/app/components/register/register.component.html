@@ -1,5 +1,18 @@
 <app-navbar></app-navbar>
 <div class="container">
+    <div class="row">
+        <div class="col-3 mt-3">
+            <div class="card p-2" style="width: 18rem;">
+                <img [src]="url" class="card-img-top" alt="..." style="width: 150px;height: 150px;margin:auto">
+                <div class="card-body text-center">
+                    <button class="btn btn-info mr-3" (click)="file.click()">upload</button>
+                    <button class="btn btn-danger mr-3" (click)="resetFile()">Annuler</button>
+                    <input type="file" style="visibility:hidden ;height: 0px;width: 0px;" accept="image/*"
+                        #file (change)="selectFile($event)">
+                </div>
+            </div>
+        </div>
+    </div>
     <form [formGroup]="registerForm" (ngSubmit)="register()">
         <div class="row">
             <div class="col">
@@ -47,7 +60,7 @@
                 <div *ngIf="submitted && email.touched && email.invalid">
                     <small class="text-danger" *ngIf="email.errors.required">Email obligatoire</small>
                     <small class="text-danger" *ngIf="email.errors.email">Email invalid</small>
-                    
+
                 </div>
                 <small *ngIf="errorEmail" class="text-danger">Email Exist !</small>
             </div>
@@ -71,15 +84,18 @@
                     <small class="text-danger" *ngIf="repeatpassword.errors.required">password obligatoire</small>
                 </div>
 
-                <div> 
-                    <small class="text-danger" *ngIf="repeatpassword.valid && repeatpassword.value!=password.value ">password must match</small>
+                <div>
+                    <small class="text-danger"
+                        *ngIf="repeatpassword.valid && repeatpassword.value!=password.value ">password must
+                        match</small>
                 </div>
             </div>
 
         </div>
 
         <br>
-        <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid || repeatpassword.value!=password.value">Register</button>
+        <button type="submit" class="btn btn-primary"
+            [disabled]="registerForm.invalid || repeatpassword.value!=password.value">Register</button>
 
     </form>
 </div>

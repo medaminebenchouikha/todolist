@@ -21,8 +21,7 @@ export class TodoService {
   }
 
   updatedone(id){
-    let resultFromWs = this.http.patch<any>("http://localhost:3000/todo/updatedone/"+id,null);
-    
+    let resultFromWs = this.http.patch<any>("http://localhost:3000/todo/updatedone/"+id,null);  
     return resultFromWs;
   }
 

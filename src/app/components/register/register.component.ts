@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  url = "./../../../../assets/img/undraw_profile_pic_ic5t.svg";
+
+  uploadedFile: File;
 
   registerForm: FormGroup;
   errorEmail= false;
@@ -65,6 +68,20 @@ export class RegisterComponent implements OnInit {
   }
 
 
+  selectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event) => {
+        this.url = (event.target as FileReader).result.toString();
+      }
+      this.uploadedFile = event.target.files[0];
+    }
+  }
+
+  resetFile() {
+    this.url = "./../../../../assets/img/undraw_profile_pic_ic5t.svg";
+  }
 
 
 }

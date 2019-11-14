@@ -1,24 +1,28 @@
 <nav class="navbar navbar-expand-md navbar-light  bg-light">
-    <a class="navbar-brand" [routerLink]="['/']" ><img src="https://formalab.tn/img/formalab.png" width="100px"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-       
-        <ul class="nav navbar-nav mr-auto">
-            <li routerLinkActive="active" class="nav-item"><a class="nav-link" routerLink="/">Home</a></li>
-            <li routerLinkActive="active" class="nav-item" *ngIf="isAdmin" ><a class="nav-link" routerLink="/admin/user-list">List Users</a></li>
-            <li routerLinkActive="active" class="nav-item" *ngIf="isLogin && !isAdmin" ><a class="nav-link" routerLink="/user/todo-list">List Todo</a></li>
-          </ul>
+  <a class="navbar-brand" [routerLink]="['/']"><img src="https://formalab.tn/img/formalab.png" width="100px"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+    <ul class="nav navbar-nav mr-auto">
+      <li routerLinkActive="active" class="nav-item"><a class="nav-link" routerLink="/">Home</a></li>
+      <li routerLinkActive="active" class="nav-item" *ngIf="isAdmin"><a class="nav-link"
+          routerLink="/admin/user-list">List Users</a></li>
+      <li routerLinkActive="active" class="nav-item" *ngIf="isLogin && !isAdmin"><a class="nav-link"
+          routerLink="/user/todo-list">List Todo</a></li>
+    </ul>
 
 
-      
-      <form class="form-inline my-2 my-lg-0">         
-        <button *ngIf="!isLogin" class="btn btn-primary my-2 my-sm-0" [routerLink]="['/login']" >Login</button>
-        <button *ngIf="!isLogin" class="btn btn-info my-2 mx-3" [routerLink]="['/register']" >Register</button>
-        <button *ngIf="isLogin" class="btn btn-danger my-2 my-sm-0" (click)="logout()">Logout</button>
 
-      </form>
-    </div>
-  </nav>
+    <form class="form-inline my-2 my-lg-0">
+      <button *ngIf="isLogin" class="btn btn-default" [routerLink]="['/user/profil']"><i class="fa fa-user"></i> Profil</button>
+      <button *ngIf="!isLogin" class="btn btn-primary my-2 my-sm-0" [routerLink]="['/login']">Login</button>
+      <button *ngIf="!isLogin" class="btn btn-info my-2 mx-3" [routerLink]="['/register']">Register</button>
+      <button *ngIf="isLogin" class="btn btn-danger my-2 my-sm-0" (click)="logout()">Logout</button>
+
+    </form>
+  </div>
+</nav>

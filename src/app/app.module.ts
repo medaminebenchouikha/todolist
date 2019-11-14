@@ -21,9 +21,10 @@ import {
   ToastNoAnimationModule
 } from 'ngx-toastr';
 import { TodoService } from './services/todo.service';
-import { UserListComponent } from './admin/user-list/user-list.component';
+import { UserListComponent } from './components/admin/user-list/user-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileSelectDirective } from 'ng2-file-upload';
+import { ProfilComponent } from './components/user/profil/profil.component';
  
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FileSelectDirective } from 'ng2-file-upload';
     LoginComponent,
     RegisterComponent,
     UserListComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
